@@ -59,15 +59,19 @@ fi
 # install pip requirements for environment
 
 .venv/molecule/2.19.0/bin/pip install molecule==2.19.0
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/.venv
+
 # not sure why we need to reinstall ansible but we do
 .venv/molecule/2.19.0/bin/pip uninstall -y ansible==2.7.8
 .venv/molecule/2.19.0/bin/pip install ansible==2.7.8
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/.venv
 
 #.venv/molecule/2.19.0/bin/pip install -r requirements.txt
 
 # install ansible-galaxy requirements
 
 .venv/molecule/2.19.0/bin/ansible-galaxy install -r requirements.yml
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/roles
 
 # run playbooks
 
