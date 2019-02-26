@@ -1,3 +1,5 @@
 ansible/
+.gitignore
 roles*
-*.pyc
+.venv
+# *.pyc
