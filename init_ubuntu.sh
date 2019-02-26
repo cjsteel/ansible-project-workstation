@@ -23,4 +23,4 @@ cd workstation
 source .venv/molecule/2.19.0/bin/activate
 pip install -r requirements.txt
 ansible-galaxy install -r requirements.yml
-#ANSIBLE_NOCOWS=1 ansible-playbook -i "${ANSIBLE_PROJECT_LOCAL_REPO}"/inventory/localhost "${ANSIBLE_PROJECT_LOCAL_REPO}"/site.$
+ANSIBLE_NOCOWS=1 ansible-playbook -i inventory/localhost site.yml
