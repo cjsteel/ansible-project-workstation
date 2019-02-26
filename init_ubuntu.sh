@@ -20,14 +20,12 @@ cd "${ANSIBLE_PROJECT_PARENT_DIR}"
 git clone --recursive "${ANSIBLE_PROJECT_REMOTE_REPO}" "${ANSIBLE_PROJECT_LOCAL_REPO}"
 
 # ensure for ansible
-git clone https://github.com/ansible/ansible.git --recursive $ cd ./ansible. ...
-source ./hacking/env-setup. ...
-source ./hacking/env-setup.fish. ...
-source ./hacking/env-setup -q. ...
-sudo easy_install pip. ...
-sudo pip install -r ./requirements.txt. ...
+git clone https://github.com/ansible/ansible.git --recursive
+cd ./ansible
+source ansible/hacking/env-setup
+sudo easy_install pip
+sudo pip install -r requirements.txt
 git pull --rebase.
-
-#ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yml
 #ANSIBLE_NOCOWS=1 ansible-playbook -i "${ANSIBLE_PROJECT_LOCAL_REPO}"/inventory/localhost "${ANSIBLE_PROJECT_LOCAL_REPO}"/site.yml
 
