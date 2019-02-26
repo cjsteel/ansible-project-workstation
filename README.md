@@ -1,19 +1,19 @@
 # ansible-project-workstation
 
-DRAFT - ansible-project-workstation is for configuring personal workstations and notebooks
-
 ## Description
 
 Test project for configuring a workstations by bootstrapping an Ansible controller on the executing host
+
+* [ROADMAP.md](ROADMAP.md)
 
 ## Testing
 
 **ATTENTION**
 
-Executing these tests will make changes to your system. 
+Executing these tests will make changes to your system including: 
 
-* Ensure for a ~/projects directory
-* Ensure for a clone of this project in ~/projects/workstation
+* Ensuring for a ~/projects directory
+* Ensuring for a clone of this project in ~/projects/workstation
 * Bootstrapping a Python virtualenv based Ansible Controller with:
   * Molecule 2.19.0
   * Ansible
