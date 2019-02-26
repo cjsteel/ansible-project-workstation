@@ -4,52 +4,80 @@ DRAFT - ansible-project-workstation is for configuring personal workstations and
 
 ## Description
 
-Project for configuring personal workstations and notebooks using ansible roles.
+Test project for configuring a workstations by bootstrapping an Ansible controller on the executing host
 
-## Notes:
+## Testing
+
+**ATTENTION**
+
+Executing these tests will make changes to your system. 
+
+* Ensure for a ~/projects directory
+* Ensure for a clone of this project in ~/projects/workstation
+* Bootstrapping a Python virtualenv based Ansible Controller with:
+  * Molecule 2.19.0
+  * Ansible
+
+* Install all Ansible roles in the projects requirements.yml file
+
+* Execute any roles in the projects `site.yml` file. - **You can avoid this last step by running `init_ubuntu.sh` instead of the `init-n-run_ubuntu.sh` script at the end of the curl command**
+
+Examples:
+
+```shell
+cd
+rm -rf ~/projects/workstation
+```
+
+Rerun from the start:
+
+```shell
+curl -k -L https://raw.githubusercontent.com/cjsteel/ansible-project-workstation/master/init-n-run_ubuntu.sh | sudo bash
+```
+
+Manual local testing
+
+```shell
+sudo ./init-n-run_ubuntu.sh
+```
 
 * run against localhost
+## Configuration
 
-## Project configuration
+You can add new Ansible roles by adding them to the projects requirements.yml and site.yml files
 
-### Ensure for project structure
+### requirements.yml
 
-ensure for projects dir
-
-```shell
-mkdir ~/projects
-cd ~/projects
-```
-
-### Clone current structure
+Currently actuates the installation of these fine ansible role(s).
 
 ```shell
-git clone git@github.com:cjsteel/ansible-project-workstation.git 
-workstation
+# Install with: `ansible-galaxy install -r requirements.yml`
+
+# from GitHub, overriding the name and specifying a specific tag
+- src: https://github.com/geerlingguy/ansible-role-clamav.git
+  version: 1.3.1
+  name: geerlingguy.clamav
 ```
-### ensure for roles directory if testing all roles
+
+### site.yml
 
 ```shell
-mkdir roles
+---
+- hosts: "{{ host | default('localhost') }}"
+  become: True
+  roles:
+    - geerlingguy.clamav
 ```
+### ansible.cfg
 
-### ensure for inventory file
-
-```shell
-touch inventory
-```
-
-### Make any ansible.cfg edits
-
-```shell
-nano ansible.cfg
-```
+You may also want to adjust the included **ansible.cfg** file
 
 #### references for ansibe.cfg 
+
 https://docs.ansible.com/ansible/2.4/intro_configuration.html#roles-path
 https://docs.ansible.com/ansible/latest/reference_appendices/config.html
 
-Example:
+Current contents:
 
 ```shell
 [defaults]
@@ -57,32 +85,9 @@ inventory=./inventory
 roles_path=./roles
 ```
 
-## Ensure for any virtualenv
+## Molecule testing
 
-```shell
-pip install molecule==
-```
-
-output example:
-
-```shell
-1.20.1, 1.20.3, 1.21.1, 1.22.0, 1.23.0, 1.25.0, 1.25.1, 2.10.0, 2.10.1, 2.11.0, 2.12.0, 2.12.1, 2.13.0, 2.13.1, 2.14.0, 2.15.0, 2.16.0, 2.17.0, 2.18.0, 2.18.1, 2.19.0)
-```
-```shell
-virtualenv ~/.venv/molecule/2.18.0 --python=python2.7
-```
-
-Activate
-
-```shell
-source ~/.venv/molecule/2.18.0/bin/activate
-```
-
-Install desired version of Molecule and dependent version of Ansible
-
-```shell
-pip install molecule==2.18.0
-```
+If you want to add a new role to your local install for testing or development you can do something like the following:
 
 ### Create new role
 
@@ -91,7 +96,7 @@ cd roles
 molecule init role --role-name ansible-role-something
 ```
 
-#### Initialize an LXD scenario
+#### Initialize an LXC/LXD scenario
 
 * https://linuxcontainers.org/lxd/getting-started-cli/
 
@@ -151,7 +156,7 @@ verifier:
 molecule --debug create -s lxd
 ```
 
-Ensure that container is actually 18.04
+Ensure that container is actually 18.04, some glitches in 
 
 ```shell
 lxc file pull something-bionic/etc/lsb-release .
@@ -173,29 +178,23 @@ DISTRIB_CODENAME=bionic
 DISTRIB_DESCRIPTION="Ubuntu 18.04.2 LTS"
 ```
 
-### Install any Ansible dependencies
+## Adding Fine Ansible Roles from Elsewhere
 
-## Adding Ansible Roles for Elsewhere
+If you want to add additional roles from other developers
 
-```shell
-cd ~/projects/workstation/roles
-```
+### Installing ansible-galaxy roles
 
-### geerlingguy.clamav example:
+#### geerlingguy.clamav
 
-Using ansible-galaxy
+Using ansible-galaxy while in the projects directory should install them to `~/projects/workstation/roles` due to the customizations in (the included ansible.cfg file.
 
 ```shell
 ansible-galaxy install geerlingguy.clamav
 ```
 
-Using a git clone:
+##### Adding additional molecule testing to geerlingguy.clamav
 
-
-
-#### Ensure testing is working
-
-Ensure for a default docker test:
+Ensuring that the included testing is working (default docker scenario):
 
 ```shell
 cd ~/projects/workstation/roles
@@ -203,9 +202,8 @@ cd geerlingguy.clamav
 molecule init scenario -s default -d docker --role-name=geerlingguy.clamav
 ```
 
-Creating an LXC/LXD scenario:
+##### Creating a new LXC/LXD scenario:
 
 ```shell
 molecule init scenario -s lxd -d lxd --role-name=geerlingguy.clamav
 ```
-
