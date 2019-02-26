@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # exit if a command fails
@@ -21,7 +20,7 @@ cd ~/projects
 git clone https://github.com/cjsteel/ansible-project-workstation.git --recursive workstation
 chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation
 cd workstation
-source ./venv/molecule/2.19.0/bin/activate
+source .venv/molecule/2.19.0/bin/activate
 pip install -r requirements.txt
 ansible-galaxy install -r requirements.yml
 #ANSIBLE_NOCOWS=1 ansible-playbook -i "${ANSIBLE_PROJECT_LOCAL_REPO}"/inventory/localhost "${ANSIBLE_PROJECT_LOCAL_REPO}"/site.$
