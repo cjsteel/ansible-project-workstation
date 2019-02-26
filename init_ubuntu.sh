@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # exit if a command fails
@@ -15,17 +16,12 @@ apt install -y python-minimal
 apt install -y python-pip
 
 # clone this repo
-mkdir -p "${ANSIBLE_PROJECT_PARENT_DIR}"
-cd "${ANSIBLE_PROJECT_PARENT_DIR}"
-git clone --recursive "${ANSIBLE_PROJECT_REMOTE_REPO}" "${ANSIBLE_PROJECT_LOCAL_REPO}"
-
-# ensure for ansible
-git clone https://github.com/ansible/ansible.git --recursive
-cd ./ansible
-source ansible/hacking/env-setup
-sudo easy_install pip
-sudo pip install -r requirements.txt
-git pull --rebase.
+mkdir -p ~/projects
+cd ~/projects
+git clone https://github.com/cjsteel/ansible-project-workstation.git --recursive workstation
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation
+cd workstation
+source ./venv/molecule/2.19.0/bin/activate
+pip install -r requirements.txt
 ansible-galaxy install -r requirements.yml
-#ANSIBLE_NOCOWS=1 ansible-playbook -i "${ANSIBLE_PROJECT_LOCAL_REPO}"/inventory/localhost "${ANSIBLE_PROJECT_LOCAL_REPO}"/site.yml
-
+#ANSIBLE_NOCOWS=1 ansible-playbook -i "${ANSIBLE_PROJECT_LOCAL_REPO}"/inventory/localhost "${ANSIBLE_PROJECT_LOCAL_REPO}"/site.$
