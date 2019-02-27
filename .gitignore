@@ -1,5 +1,4 @@
-ansible/
-.gitignore
-roles*
+roles/*
+!roles/common
+*.pyc
 .venv
-# *.pyc
