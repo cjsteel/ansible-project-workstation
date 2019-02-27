@@ -214,3 +214,14 @@ and commit and push my changes
 ```shell
 git commit -m 'added common role to project for testing the project using molecule instances rather than directly on my system'
 ```
+
+Add this file, confirm, commit and push to my repo
+
+```shell
+git add .
+git status
+git commit -m 'added molecule testing of project'
+```
+
+updated ROADMAP.md commited and so on, this should probably be done before the above in the future ;-)
+
