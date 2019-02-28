@@ -1,5 +1,9 @@
 # HISTORY.md
 
+## 2019-02-27 - Enabling the running of Docker in an LXC container
+
+* [docs/lxc-notes.md](docs/lxc-notes.md)
+
 ## 2019-02-27- Added project testing using a Molecule provider
 
 ### On Host (Controller)

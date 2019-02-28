@@ -4,6 +4,9 @@
 
 Test project for configuring a workstations by bootstrapping an Ansible controller on the executing host
 
+### Local Resources
+
+* [HISTORY.md](HISTORY.md)
 * [ROADMAP.md](ROADMAP.md)
 
 ## Testing

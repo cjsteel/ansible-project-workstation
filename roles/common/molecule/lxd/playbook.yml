@@ -4,3 +4,4 @@
   roles:
     - role: common
     - role: geerlingguy.clamav
+    - role: geerlingguy.docker
