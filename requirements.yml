@@ -1,6 +1,9 @@
-# Install with: `ansible-galaxy install -r requirements.yml`
+# Manually install with: `ansible-galaxy install -r requirements.yml`
 
-# from GitHub, overriding the name and specifying a specific tag
+- src: https://github.com/geerlingguy/ansible-role-pip.git
+  version: 1.3.0
+  name: geerlingguy.pip
+
 - src: https://github.com/geerlingguy/ansible-role-clamav.git
   version: 1.3.1
   name: geerlingguy.clamav
@@ -8,4 +11,17 @@
 - src: https://github.com/geerlingguy/ansible-role-docker.git
   version: 2.5.2
   name: geerlingguy.docker
+
+# required for docker testing
+- src: https://github.com/weareinteractive/ansible-users
+  version: 1.11.1
+  name: weareinteractive.users
+
+- src: https://github.com/jdauphant/ansible-role-vagrant.git
+  version: v1.1
+  name: jdauphant.vagrant
+
+- src: https://github.com/Oefenweb/ansible-nodejs.git
+  version: v5.0.0
+  name: oefenweb.nodejs
 

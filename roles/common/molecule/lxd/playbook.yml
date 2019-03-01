@@ -1,7 +1,21 @@
 ---
+# projects/workstation/roles/common/molecule/lxd/playbook.yml
 - name: Converge
   hosts: all
+  vars:
+    pip_install_packages:
+      - docker
+    users:
+      - username: ubuntu
+        groups:
+          - docker
+        append: yes
+    vagrant_version: 2.2.3
+    vagrant_virtualbox_install: false
   roles:
     - role: common
     - role: geerlingguy.clamav
+    - role: geerlingguy.pip
     - role: geerlingguy.docker
+    - role: weareinteractive.users
+    - role: jdauphant.vagrant

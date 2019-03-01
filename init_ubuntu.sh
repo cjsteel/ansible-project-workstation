@@ -17,6 +17,7 @@ apt install -y openssh-server
 apt install -y git
 apt install -y python-minimal
 apt install -y python-pip
+apt install -y virtualenv
 
 # ensure for projects directory
 
@@ -46,12 +47,24 @@ fi
 
 cd ~/projects/workstation
 
+# ensure for virtualenv
+
+if [ -d ~/projects/workstation/.venv ] 
+then
+    echo "MESSAGE: Directory ~/projects/workstation/.venv exists." 
+else
+    echo "MESSAGE: Creating virtualenv." 
+    virtualenv .venv/molecule/2.19.0 --python=python2.7 --no-site-packages
+    chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/.venv
+fi
+
+
 # ensure virtualenv is active
 
 if [ -e .venv/molecule/2.19.0/bin/activate ]
 then
-    echo "MESSAGE: Activating virtualenv" 
-    source ./.venv/molecule/2.19.0/bin/activate
+    echo "MESSAGE: Activating virtualenv"
+    source .venv/molecule/2.19.0/bin/activate
 else
     echo "virtualenv is not activated" 
 fi
@@ -59,15 +72,19 @@ fi
 # install pip requirements for environment
 
 .venv/molecule/2.19.0/bin/pip install molecule==2.19.0
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/.venv
+
 # not sure why we need to reinstall ansible but we do
-.venv/molecule/2.19.0/bin/pip uninstall -y ansible==2.7.8
-.venv/molecule/2.19.0/bin/pip install ansible==2.7.8
+#.venv/molecule/2.19.0/bin/pip uninstall -y ansible==2.7.8
+#.venv/molecule/2.19.0/bin/pip install ansible==2.7.8
+#chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/.venv
 
 #.venv/molecule/2.19.0/bin/pip install -r requirements.txt
 
 # install ansible-galaxy requirements
 
 .venv/molecule/2.19.0/bin/ansible-galaxy install -r requirements.yml
+chown -R ${SUDO_USER}.${SUDO_USER} ~/projects/workstation/roles
 
 # run playbooks
 

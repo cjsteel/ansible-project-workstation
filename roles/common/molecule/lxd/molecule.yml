@@ -6,7 +6,7 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: docker-bionic
+  - name: common-bionic
     source:
       type: image
       alias: ubuntu/bionic/amd64
