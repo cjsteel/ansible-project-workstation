@@ -34,7 +34,10 @@ rm -rf ~/projects/workstation
 
 Rerun from the start:
 
+NOTE: If things are not progressing, press Enter once, you may be prompted for your sudo password.
+
 ```shell
+sudo ls -al # force prompt for sudo a password
 curl -k -L https://raw.githubusercontent.com/cjsteel/ansible-project-workstation/master/init-n-run_ubuntu.sh | sudo bash
 ```
 
@@ -210,3 +213,24 @@ molecule init scenario -s default -d docker --role-name=geerlingguy.clamav
 ```shell
 molecule init scenario -s lxd -d lxd --role-name=geerlingguy.clamav
 ```
+
+## Inspiration
+
+### Andy Teng
+
+* https://github.com/andytengca
+
+### John Le
+
+* https://github.com/johnle
+
+### nix
+
+* https://github.com/hostuser/ansible-workstation/blob/master/tasks/nix.yml
+
+## To incorporate?
+
+* https://github.com/geerlingguy/ansible-role-git
+* https://github.com/geerlingguy/ansible-role-ansible/blob/master/defaults/main.yml
+* https://github.com/jdauphant/ansible-role-spotify/blob/f135d7da65774cdab6e6cd2eb1d5436ebd467718/tasks/main.yml
+* 

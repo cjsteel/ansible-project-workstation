@@ -19,3 +19,4 @@
     - role: geerlingguy.docker
     - role: weareinteractive.users
     - role: jdauphant.vagrant
+    - role: nephelaiio.vim

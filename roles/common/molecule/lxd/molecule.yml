@@ -12,8 +12,9 @@ platforms:
       alias: ubuntu/bionic/amd64
     architecture: x86_64
     profiles:
-      - default
-      - nested
+       - default
+#       - nested
+#      - gui
 provisioner:
   name: ansible
   lint:
