@@ -7,7 +7,7 @@
 #   sudo ./bootstrap-ansible-project.sh
 #
 
-echo "$0 launched" 
+echo "$0 launched"
 # exit if a command fails
 set -e
 
@@ -48,7 +48,8 @@ then
     echo "MESSAGE: ~/bin/bash_magic exists."
 else
     echo "Clone bash_magic to ~/bin"
-    mkdir ~/bin
+    echo "User is $USER"
+    mkdir -p ~/bin/tmp
     cd ~/bin
     git clone https://github.com/cjsteel/bash_magic.git
     cat ~/bin/bash_magic/bashrc >> ~/.bashrc
