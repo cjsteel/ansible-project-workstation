@@ -50,7 +50,7 @@ else
     echo "Clone bash_magic to ~/bin"
     mkdir ~/bin
     cd ~/bin
-    git clone git@github.com:cjsteel/bash_magic.git
+    git clone https://github.com/cjsteel/bash_magic.git
     cat ~/bin/bash_magic/bashrc >> ~/.bashrc
     mkdir ~/.bash_aliases.d ~/.bash_completion.d ~/.bash_functions.d
     echo "alias ansible-${ANSIBLE_VERSION}='source ~/.venv/ansble-${ANSIBLE_VERSION}/bin/activate'" > ~/bin/bash_magic/bash_aliases.d/ansible-2.9.6.sh 
