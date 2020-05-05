@@ -6,6 +6,8 @@ Test project for configuring a workstations by bootstrapping an Ansible controll
 
 ### Local Resources
 
+* [docs/walkthrough.md](docs/walkthrough.md)
+
 * [HISTORY.md](HISTORY.md)
 * [ROADMAP.md](ROADMAP.md)
 
